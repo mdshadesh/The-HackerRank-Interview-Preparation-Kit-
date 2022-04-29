@@ -9,17 +9,27 @@ import java.util.regex.*;
 public class Solution 
 {
 
-    // Complete the rotLeft function below.
-    static int[] rotLeft(int[] a, int d) 
+    // Complete the sockMerchant function below.
+    static int sockMerchant(int n, int[] ar) 
     {
-        int b[] = new int [a.length];
-        for(int i = 0 ; i < a.length;i++)
+        List<Integer> listOfPair = new ArrayList<Integer>();
+        int pairCount = 0;
+        for(int i = 0 ; i < ar.length;i++)
         {
-            int newLoc = (i + (a.length-d))%a.length;
-            b[newLoc] = a[i];
+            int findIndex = listOfPair.indexOf(ar[i]);
+            if( findIndex == -1)
+            {
+                listOfPair.add(ar[i]);
+            }
+            else
+            {
+                listOfPair.remove(findIndex);
+                pairCount++;
+            }
         }
 
-        return b;
+        return pairCount;
+
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -28,35 +38,23 @@ public class Solution
     {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        String[] nd = scanner.nextLine().split(" ");
+        int n = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-        int n = Integer.parseInt(nd[0]);
+        int[] ar = new int[n];
 
-        int d = Integer.parseInt(nd[1]);
-
-        int[] a = new int[n];
-
-        String[] aItems = scanner.nextLine().split(" ");
+        String[] arItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
         for (int i = 0; i < n; i++) 
         {
-            int aItem = Integer.parseInt(aItems[i]);
-            a[i] = aItem;
+            int arItem = Integer.parseInt(arItems[i]);
+            ar[i] = arItem;
         }
 
-        int[] result = rotLeft(a, d);
+        int result = sockMerchant(n, ar);
 
-        for (int i = 0; i < result.length; i++) 
-        {
-            bufferedWriter.write(String.valueOf(result[i]));
-
-            if (i != result.length - 1) 
-            {
-                bufferedWriter.write(" ");
-            }
-        }
-
+        bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
 
         bufferedWriter.close();
