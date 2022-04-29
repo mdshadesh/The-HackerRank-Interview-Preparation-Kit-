@@ -4,9 +4,9 @@ Tell the reader (someone who does not know anything about this project)
 all they need to know. The comments should usually include at least:
 ------------------------------------------------------------------------
 
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+PROJECT TITLE: The HackerRank Interview Preparation Kit
+PURPOSE OF PROJECT: The HackerRank Interview Preparation Kit
+VERSION or DATE: 4/29/2022
+HOW TO START THIS PROJECT: The HackerRank Interview Preparation Kit
+AUTHORS: The HackerRank Interview Preparation Kit
+USER INSTRUCTIONS: Naimul Hasan SHadesh
