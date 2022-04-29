@@ -9,22 +9,17 @@ import java.util.regex.*;
 public class Solution 
 {
 
-    // Complete the minimumSwaps function below.
-    static int minimumSwaps(int[] arr) 
+    // Complete the rotLeft function below.
+    static int[] rotLeft(int[] a, int d) 
     {
-        int minSwapCount = 0;
-        int tmp = 0;
-        for(int i = 0 ; i < arr.length;i++)
+        int b[] = new int [a.length];
+        for(int i = 0 ; i < a.length;i++)
         {
-            while(arr[i] != i+1){
-                tmp = arr[arr[i]-1];
-                arr[arr[i]-1] = arr[i];
-                arr[i] = tmp;
-                minSwapCount++;
-            }
+            int newLoc = (i + (a.length-d))%a.length;
+            b[newLoc] = a[i];
         }
 
-        return minSwapCount;
+        return b;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -33,23 +28,35 @@ public class Solution
     {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        int n = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+        String[] nd = scanner.nextLine().split(" ");
 
-        int[] arr = new int[n];
+        int n = Integer.parseInt(nd[0]);
 
-        String[] arrItems = scanner.nextLine().split(" ");
+        int d = Integer.parseInt(nd[1]);
+
+        int[] a = new int[n];
+
+        String[] aItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
         for (int i = 0; i < n; i++) 
         {
-            int arrItem = Integer.parseInt(arrItems[i]);
-            arr[i] = arrItem;
+            int aItem = Integer.parseInt(aItems[i]);
+            a[i] = aItem;
         }
 
-        int res = minimumSwaps(arr);
+        int[] result = rotLeft(a, d);
 
-        bufferedWriter.write(String.valueOf(res));
+        for (int i = 0; i < result.length; i++) 
+        {
+            bufferedWriter.write(String.valueOf(result[i]));
+
+            if (i != result.length - 1) 
+            {
+                bufferedWriter.write(" ");
+            }
+        }
+
         bufferedWriter.newLine();
 
         bufferedWriter.close();
